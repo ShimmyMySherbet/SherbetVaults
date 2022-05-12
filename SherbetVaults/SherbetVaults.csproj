@@ -382,6 +382,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\TrashCommand.cs" />
     <Compile Include="Commands\VaultCommand.cs" />
     <Compile Include="Commands\VaultsCommand.cs" />
     <Compile Include="Commands\SpyVaultCommand.cs" />
@@ -394,6 +395,7 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\Config\SherbetVaultsConfig.cs" />
     <Compile Include="Models\Config\VaultConfig.cs" />
+    <Compile Include="Models\TrashUtility.cs" />
     <Compile Include="Models\VaultItems.cs" />
     <Compile Include="Models\VaultManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
