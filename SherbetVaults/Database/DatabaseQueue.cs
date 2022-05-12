@@ -71,6 +71,7 @@ namespace SherbetVaults.Database
 
         public void Dispose()
         {
+            StopWorker();
             m_QueueSemaphore.Dispose();
             m_TokenSource.Dispose();
         }

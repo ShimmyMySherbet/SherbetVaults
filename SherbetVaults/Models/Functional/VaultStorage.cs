@@ -41,6 +41,6 @@ namespace SherbetVaults.Models
             OpenForPlayer(ldm.Player);
 
         public async Task OpenForPlayerAsync(LDMPlayer player) =>
-            await ThreadTool.RunOnGameThreadAsync(OpenForPlayer, player)
+            await ThreadTool.RunOnGameThreadAsync(OpenForPlayer, player);
     }
 }

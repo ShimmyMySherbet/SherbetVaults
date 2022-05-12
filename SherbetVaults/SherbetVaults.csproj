@@ -386,7 +386,6 @@
     <Compile Include="Commands\VaultsCommand.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueue.cs" />
-    <Compile Include="Database\Models\PlayerVault.cs" />
     <Compile Include="Database\Models\VaultItem.cs" />
     <Compile Include="Database\Tables\VaultItemsTable.cs" />
     <Compile Include="Models\Caching\PlayerVaultCache.cs" />

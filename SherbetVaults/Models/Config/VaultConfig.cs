@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
+using Rocket.API;
+using RocketExtensions.Models;
 
 namespace SherbetVaults.Models.Config
 {
@@ -17,18 +18,20 @@ namespace SherbetVaults.Models.Config
         public byte Height = 8;
 
         [XmlIgnore]
-        public string RealPermission
+        public string FormattedPermission
         {
             get
             {
-                var p = Permission;
-                var ind = Permission.IndexOf("$vaultid", StringComparison.InvariantCultureIgnoreCase);
-                if (ind != -1)
+                var index = Permission.IndexOf("$vaultid", StringComparison.InvariantCultureIgnoreCase);
+                if (index != -1)
                 {
-                    p = p.Remove(ind, 8).Insert(ind, VaultID);
+                    return Permission.Remove(index, 8).Insert(index, VaultID);
                 }
-                return p;
+                return Permission;
             }
         }
+
+        public bool HasPermission(LDMPlayer player)
+            => player.UnturnedPlayer.HasPermission(FormattedPermission);
     }
 }
