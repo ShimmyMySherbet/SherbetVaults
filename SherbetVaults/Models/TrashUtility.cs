@@ -16,7 +16,7 @@ namespace SherbetVaults.Models
             {
                 player.Player.inventory.updateItems(7, items);
                 player.Player.inventory.sendStorage();
-            })
+            });
         }
     }
 }
