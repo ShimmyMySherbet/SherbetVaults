@@ -13,12 +13,8 @@ namespace SherbetVaults.Commands
     {
         public override async UniTask Execute(CommandContext context)
         {
-            var playerID = context.Arguments.Get(0, 0ul);
-
-            if (playerID == 0)
-            {
-                playerID = context.Arguments.Get<UnturnedPlayer>(0, paramName: "Target Player").CSteamID.m_SteamID;
-            }
+            var playerID = context.Arguments.Get<UnturnedPlayer>(0, defaultValue: null)?.CSteamID.m_SteamID
+                ?? context.Arguments.Get<ulong>(0, paramName: "Target Player");
 
             var targetVault = context.Arguments.Get(1, "default", paramName: "VaultID");
 

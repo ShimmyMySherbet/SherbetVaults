@@ -58,8 +58,20 @@ namespace SherbetVaults
             { "Vaults_List", "[color=green]Your vaults: {0}[/color]" },
         };
 
-        public VaultConfig GetVaultConfig(string vaultID) =>
-            VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
+        public VaultConfig GetVaultConfig(string vaultID, LDMPlayer player = null)
+        {
+            if (string.IsNullOrEmpty(vaultID))
+            {
+                if (Config.LargestVaultIsDefault && player != null)
+                {
+                    return GetPlayerVaults(player)
+                        .OrderByDescending(x => x.Width * x.Height)
+                        .FirstOrDefault();
+                }
+                vaultID = "default";
+            }
+            return VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
+        }
 
         public VaultConfig[] GetPlayerVaults(LDMPlayer player) =>
             VaultConfigs.Where(x => x.HasPermission(player)).ToArray();

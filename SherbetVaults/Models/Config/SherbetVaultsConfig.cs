@@ -13,6 +13,7 @@ namespace SherbetVaults.Models.Config
         public List<VaultConfig> Vaults = new();
 
         public bool CacheVaults = true;
+        public bool LargestVaultIsDefault = true;
 
         public void LoadDefaults()
         {

@@ -12,7 +12,7 @@ namespace SherbetVaults.Commands
     {
         public override async UniTask Execute(CommandContext context)
         {
-            var targetVault = context.Arguments.Get(0, defaultValue: "default", paramName: "Vault Name");
+            var targetVault = context.Arguments.Get(0, defaultValue: string.Empty, paramName: "Vault Name");
 
             var vaultConfig = Plugin.GetVaultConfig(targetVault);
 
