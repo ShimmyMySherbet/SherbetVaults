@@ -384,6 +384,7 @@
   <ItemGroup>
     <Compile Include="Commands\VaultCommand.cs" />
     <Compile Include="Commands\VaultsCommand.cs" />
+    <Compile Include="Commands\SpyVaultCommand.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueue.cs" />
     <Compile Include="Database\Models\VaultItem.cs" />

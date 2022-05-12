@@ -5,6 +5,7 @@ using Rocket.API.Collections;
 using Rocket.Core.Logging;
 using Rocket.Core.Plugins;
 using RocketExtensions.Models;
+using SDG.Unturned;
 using SherbetVaults.Database;
 using SherbetVaults.Models;
 using SherbetVaults.Models.Config;
@@ -29,15 +30,23 @@ namespace SherbetVaults
                 return;
             }
             Database.CheckSchema();
-            VaultManager = new VaultManager(this);
             Database.VaultItems.Queue.StartWorker();
+
+            VaultManager = new VaultManager(this);
+            Provider.onEnemyDisconnected += OnPlayerDisconnect;
             base.LoadPlugin();
         }
 
         public override void UnloadPlugin(PluginState state = PluginState.Unloaded)
         {
             base.UnloadPlugin(state);
+            Provider.onEnemyDisconnected -= OnPlayerDisconnect;
             Database?.VaultItems?.Queue?.Dispose();
+        }
+
+        private void OnPlayerDisconnect(SteamPlayer player)
+        {
+            VaultManager.RemovePlayerCache(player.playerID.steamID.m_SteamID);
         }
 
         public override TranslationList DefaultTranslations => new TranslationList()

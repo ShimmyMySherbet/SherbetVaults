@@ -12,6 +12,8 @@ namespace SherbetVaults.Models.Config
         [XmlArrayItem(ElementName = "Vault")]
         public List<VaultConfig> Vaults = new();
 
+        public bool CacheVaults = true;
+
         public void LoadDefaults()
         {
             DatabaseSettings = DatabaseSettings.Default;
