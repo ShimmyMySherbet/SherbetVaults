@@ -11,8 +11,9 @@ namespace SherbetVaults.Commands
     [AllowedCaller(AllowedCaller.Player)]
     public class VaultsCommand : RocketCommand
     {
-        public override UniTask Execute(CommandContext context)
+        public override async UniTask Execute(CommandContext context)
         {
+
         }
     }
 }

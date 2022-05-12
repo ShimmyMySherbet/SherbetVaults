@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using RocketExtensions.Models;
+using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
 using SDG.Unturned;
 
 namespace SherbetVaults.Models
@@ -37,5 +39,8 @@ namespace SherbetVaults.Models
 
         public void OpenForPlayer(LDMPlayer ldm) =>
             OpenForPlayer(ldm.Player);
+
+        public async Task OpenForPlayerAsync(LDMPlayer player) =>
+            await ThreadTool.RunOnGameThreadAsync(OpenForPlayer, player)
     }
 }

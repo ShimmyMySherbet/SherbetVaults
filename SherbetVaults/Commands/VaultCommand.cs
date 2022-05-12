@@ -36,7 +36,7 @@ namespace SherbetVaults.Commands
                 return;
             }
 
-            vault.OpenForPlayer(context.LDMPlayer);
+            await vault.OpenForPlayerAsync(context.LDMPlayer);
         }
 
         private new SherbetVaultsPlugin Plugin =>
