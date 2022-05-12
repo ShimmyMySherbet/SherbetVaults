@@ -63,3 +63,6 @@ When disabled, the default vault is the one named 'default'.
   <LargestVaultIsDefault>false</LargestVaultIsDefault>
 </SherbetVaultsConfig>
 ```
+
+## Download
+Downloads can be found in the <a href="https://github.com/ShimmyMySherbet/SherbetVaults/releases/">Releases</a> page.
