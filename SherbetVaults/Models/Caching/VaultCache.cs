@@ -6,7 +6,7 @@ namespace SherbetVaults.Models.Caching
     {
         private ConcurrentDictionary<ulong, PlayerVaultCache> m_Caches = new ConcurrentDictionary<ulong, PlayerVaultCache>();
 
-        public VaultStorage GetStorage(ulong playerID, string vaultID)
+        public VaultItems GetStorage(ulong playerID, string vaultID)
         {
             if (!m_Caches.ContainsKey(playerID))
             {
@@ -16,7 +16,7 @@ namespace SherbetVaults.Models.Caching
             return m_Caches[playerID].GetStorage(vaultID);
         }
 
-        public void SetStorage(ulong playerID, string vaultID, VaultStorage storage)
+        public void SetStorage(ulong playerID, string vaultID, VaultItems storage)
         {
             if (!m_Caches.ContainsKey(playerID))
             {

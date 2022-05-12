@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Rocket.Core.Logging;
+using SDG.Unturned;
 using SherbetVaults.Database;
 using SherbetVaults.Models.Caching;
 
@@ -19,7 +21,7 @@ namespace SherbetVaults.Models
             VaultsCache = new VaultCache();
         }
 
-        public async Task<VaultStorage> GetVault(ulong playerID, string vaultID, bool allowCache = true)
+        public async Task<VaultItems> GetVault(ulong playerID, string vaultID, bool allowCache = true)
         {
             if (EnableCache && allowCache)
             {
@@ -30,23 +32,22 @@ namespace SherbetVaults.Models
                 }
             }
 
-            var vaultConfig = VaultsPlugin.VaultConfigs.FirstOrDefault
-                (x => x.VaultID.Equals(vaultID, StringComparison.InvariantCultureIgnoreCase));
-
+            var vaultConfig = VaultsPlugin.GetVaultConfig(vaultID);
             if (vaultConfig == null)
             {
+                Logger.LogWarning($"Failed to find vault config for {vaultID}");
                 return null;
             }
 
             var items = await Database.VaultItems.OpenVault(playerID, vaultID, vaultConfig);
-            var storage = new VaultStorage(items);
 
             if (EnableCache)
             {
-                VaultsCache.SetStorage(playerID, vaultID, storage);
+                VaultsCache.SetStorage(playerID, vaultID, items);
             }
-
-            return storage;
+            if (items == null)
+                Logger.LogError("Bad Vault Error");
+            return items;
         }
     }
 }

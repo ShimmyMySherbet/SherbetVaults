@@ -26,13 +26,25 @@ namespace SherbetVaults.Database.Models
 
         public byte[] State { get; set; }
 
-
-
-
-
         public Item GetItem()
         {
             return new Item(ItemID, Amount, Quality, State);
+        }
+
+        public static VaultItem Create(ulong playerID, string vaultID, Item item, byte rot, byte x, byte y)
+        {
+            return new VaultItem()
+            {
+                ItemID = item.id,
+                PlayerID = playerID,
+                VaultID = vaultID,
+                Amount = item.amount,
+                Quality = item.quality,
+                Rot = rot,
+                State = item.state,
+                X = x,
+                Y = y
+            };
         }
     }
 }

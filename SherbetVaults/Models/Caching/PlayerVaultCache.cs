@@ -6,26 +6,26 @@ namespace SherbetVaults.Models.Caching
     public class PlayerVaultCache
     {
         public ulong PlayerID { get; }
-        private ConcurrentDictionary<string, VaultStorage> m_Vaults = new ConcurrentDictionary<string, VaultStorage>(StringComparer.InvariantCultureIgnoreCase);
+        private ConcurrentDictionary<string, VaultItems> m_Vaults = new ConcurrentDictionary<string, VaultItems>(StringComparer.InvariantCultureIgnoreCase);
 
         public PlayerVaultCache(ulong playerID)
         {
             PlayerID = playerID;
         }
 
-        public void SetStorage(string vaultId, VaultStorage storage)
+        public void SetStorage(string vaultId, VaultItems storage)
         {
             if (m_Vaults.TryRemove(vaultId, out var oldStorage))
             {
                 if (oldStorage != storage)
                 {
-                    oldStorage.VaultItems.DisableSync();
+                    oldStorage.DisableSync();
                 }
             }
             m_Vaults[vaultId] = storage;
         }
 
-        public VaultStorage GetStorage(string vaultID)
+        public VaultItems GetStorage(string vaultID)
         {
             if (m_Vaults.TryGetValue(vaultID, out var storage))
             {
@@ -38,7 +38,7 @@ namespace SherbetVaults.Models.Caching
         {
             foreach (var i in m_Vaults.Values)
             {
-                i.VaultItems.DisableSync();
+                i.DisableSync();
             }
             m_Vaults.Clear();
         }

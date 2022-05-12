@@ -47,12 +47,10 @@ namespace SherbetVaults
             { "Vault_Fail_CannotLoad", "[color=red]Vault {0} is currently unavailable[/color]" },
             { "Vaults_No_Vaults", "[color=yellow]You don't have access to any vaults[/color]" },
             { "Vaults_List", "[color=green]Your vaults: {0}[/color]" },
-
         };
 
         public VaultConfig GetVaultConfig(string vaultID) =>
             VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
-
 
         public VaultConfig[] GetPlayerVaults(LDMPlayer player) =>
             VaultConfigs.Where(x => x.HasPermission(player)).ToArray();
