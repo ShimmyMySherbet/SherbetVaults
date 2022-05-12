@@ -11,10 +11,13 @@ namespace SherbetVaults.Models.Config
         [XmlAttribute]
         public string VaultID = "default";
 
+        [XmlAttribute]
         public string Permission = "Vaults.$VaultID";
 
+        [XmlAttribute]
         public byte Width = 8;
 
+        [XmlAttribute]
         public byte Height = 8;
 
         [XmlIgnore]
