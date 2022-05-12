@@ -14,7 +14,7 @@ namespace SherbetVaults.Commands
         {
             var targetVault = context.Arguments.Get(0, defaultValue: string.Empty, paramName: "Vault Name");
 
-            var vaultConfig = Plugin.GetVaultConfig(targetVault);
+            var vaultConfig = Plugin.GetVaultConfig(targetVault, context.LDMPlayer);
 
             if (vaultConfig == null)
             {
