@@ -26,19 +26,19 @@ Wipes the contents of another player's vault. Also says how many items were dele
 ### Database Settings
 The MySQL settings for the plugin to use.
 
-## Vaults
+### Vaults
 Sets the vault types, their permissions, and size.
 
 `$VaultID` acts as a short-cut to the vault's ID.
 
-## Cache Vaults
+### Cache Vaults
 Specifies if the plugin should cache each player's vault fur the duration of their play-session.
 
 Provides a minor speed boost to subsequent uses of the `/vault` command.
 
 This can be disabled to allow for external systems to modify a player's vault while they are playing.
 
-## Largest Vault Is Default
+### Largest Vault Is Default
 When enabled, sets the default vault for a player to the largest one they have access to.
 
 When disabled, the default vault is the one named 'default'.
