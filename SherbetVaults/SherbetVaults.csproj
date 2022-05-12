@@ -386,6 +386,7 @@
     <Compile Include="Commands\VaultCommand.cs" />
     <Compile Include="Commands\VaultsCommand.cs" />
     <Compile Include="Commands\SpyVaultCommand.cs" />
+    <Compile Include="Commands\WipeVaultCommand.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueue.cs" />
     <Compile Include="Database\Models\VaultItem.cs" />
@@ -395,7 +396,7 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\Config\SherbetVaultsConfig.cs" />
     <Compile Include="Models\Config\VaultConfig.cs" />
-    <Compile Include="Models\TrashUtility.cs" />
+    <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\VaultItems.cs" />
     <Compile Include="Models\VaultManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -56,6 +56,7 @@ namespace SherbetVaults
             { "Vault_Fail_CannotLoad", "[color=red]Vault {0} is currently unavailable[/color]" },
             { "Vaults_No_Vaults", "[color=yellow]You don't have access to any vaults[/color]" },
             { "Vaults_List", "[color=green]Your vaults: {0}[/color]" },
+            { "WipeVault_Wiped", "[color=green]Wiped {0} items from {1}'s vault {2}[/color]" },
         };
 
         public VaultConfig GetVaultConfig(string vaultID, LDMPlayer player = null)

@@ -38,7 +38,7 @@ namespace SherbetVaults.Database.Tables
         public async Task RemoveItem(ulong playerID, string vaultID, byte x, byte y) =>
             await ExecuteNonQueryAsync("DELETE FROM @TABLE WHERE PlayerID=@0 AND VaultID=@1 AND X=@2 AND Y=@3", playerID, vaultID, x, y);
 
-        public async Task Clear(ulong playerID, string vaultID) =>
+        public async Task<int> Clear(ulong playerID, string vaultID) =>
             await ExecuteNonQueryAsync("DELETE FROM @TABLE WHERE PlayerID=@0 AND VaultID=@1;", playerID, vaultID);
 
         public async Task UpdateItemState(ulong playerID, string vaultID, ItemJar jar) =>
