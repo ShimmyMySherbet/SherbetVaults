@@ -397,6 +397,7 @@
     <Compile Include="Models\Config\SherbetVaultsConfig.cs" />
     <Compile Include="Models\Config\VaultConfig.cs" />
     <Compile Include="Models\Extensions.cs" />
+    <Compile Include="Models\OfflinePlayerUtility.cs" />
     <Compile Include="Models\VaultItems.cs" />
     <Compile Include="Models\VaultManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

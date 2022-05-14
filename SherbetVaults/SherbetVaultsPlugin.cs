@@ -59,20 +59,20 @@ namespace SherbetVaults
             { "WipeVault_Wiped", "[color=green]Wiped {0} items from {1}'s vault {2}[/color]" },
         };
 
-        public VaultConfig GetVaultConfig(string vaultID, LDMPlayer player = null)
-        {
-            if (string.IsNullOrEmpty(vaultID))
-            {
-                if (Config.LargestVaultIsDefault && player != null)
-                {
-                    return GetPlayerVaults(player)
-                        .OrderByDescending(x => x.Width * x.Height)
-                        .FirstOrDefault();
-                }
-                vaultID = "default";
-            }
-            return VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
-        }
+        public VaultConfig GetDefaultVault(string vaultID = null, LDMPlayer player = null) =>
+            string.IsNullOrEmpty(vaultID) ?
+                (Config.LargestVaultIsDefault && player != null)
+                    ? LargetVault(player)
+                    : GetVaultConfig(Config.DefaultVault)
+            : GetVaultConfig(vaultID);
+
+        public VaultConfig GetVaultConfig(string vaultID) =>
+            VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
+
+        public VaultConfig LargetVault(LDMPlayer player) =>
+            GetPlayerVaults(player)
+            .OrderByDescending(x => x.Width * x.Height)
+            .FirstOrDefault();
 
         public VaultConfig[] GetPlayerVaults(LDMPlayer player) =>
             VaultConfigs.Where(x => x.HasPermission(player)).ToArray();

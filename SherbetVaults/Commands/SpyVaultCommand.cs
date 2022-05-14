@@ -3,6 +3,8 @@ using Rocket.API;
 using Rocket.Unturned.Player;
 using RocketExtensions.Models;
 using RocketExtensions.Plugins;
+using SherbetVaults.Models;
+using UnityEngine;
 
 namespace SherbetVaults.Commands
 {
@@ -13,10 +15,17 @@ namespace SherbetVaults.Commands
     {
         public override async UniTask Execute(CommandContext context)
         {
-            var playerID = context.Arguments.Get<UnturnedPlayer>(0, defaultValue: null)?.CSteamID.m_SteamID
-                ?? context.Arguments.Get<ulong>(0, paramName: "Target Player");
+            var playerHandle = context.Arguments.Get<string>(0, paramName: "Target Player");
 
-            var targetVault = context.Arguments.Get(1, "default", paramName: "VaultID");
+            var targetPlayer = await OfflinePlayerUtility.GetPlayer(playerHandle);
+
+            if (targetPlayer.playerID == 0)
+            {
+                await context.ReplyAsync($"Usage: /{Name} {Syntax}", Color.cyan);
+                return;
+            }
+
+            var targetVault = context.Arguments.Get(1, Plugin.Config.DefaultVault, paramName: "VaultID");
 
             var vaultConfig = Plugin.GetVaultConfig(targetVault);
 
@@ -26,7 +35,7 @@ namespace SherbetVaults.Commands
                 return;
             }
 
-            var vault = await Plugin.VaultManager.GetVault(playerID, targetVault);
+            var vault = await Plugin.VaultManager.GetVault(targetPlayer.playerID, targetVault);
 
             if (vault == null)
             {
