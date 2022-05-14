@@ -17,7 +17,7 @@ namespace SherbetVaults.Commands
         {
             var playerHandle = context.Arguments.Get<string>(0, paramName: "Target Player");
 
-            var targetPlayer = await OfflinePlayerUtility.GetPlayer(playerHandle);
+            var targetPlayer = await OfflinePlayerUtility.GetPlayer(playerHandle, false);
 
             if (targetPlayer.playerID == 0)
             {

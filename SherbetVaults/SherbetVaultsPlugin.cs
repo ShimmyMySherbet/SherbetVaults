@@ -59,12 +59,63 @@ namespace SherbetVaults
             { "WipeVault_Wiped", "[color=green]Wiped {0} items from {1}'s vault {2}[/color]" },
         };
 
-        public VaultConfig GetDefaultVault(string vaultID = null, LDMPlayer player = null) =>
-            string.IsNullOrEmpty(vaultID) ?
-                (Config.LargestVaultIsDefault && player != null)
-                    ? LargetVault(player)
-                    : GetVaultConfig(Config.DefaultVault)
-            : GetVaultConfig(vaultID);
+        public VaultConfig GetDefaultVault(LDMPlayer player, out EVaultAvailability availability, string vaultID = null)
+        {
+            if (VaultConfigs.Count == 0)
+            {
+                availability = EVaultAvailability.NoVaults;
+                return null;
+            }
+
+            var permissedVaults = GetPlayerVaults(player);
+
+            if (permissedVaults.Length == 0)
+            {
+                availability = EVaultAvailability.NoAllowedVaults;
+                return null;
+            }
+
+            var vaultDefaulted = false;
+
+            if (string.IsNullOrWhiteSpace(vaultID))
+            {
+                if (Config.LargestVaultIsDefault)
+                {
+                    availability = EVaultAvailability.VaultAvailable;
+                    return LargetVault(player);
+                }
+
+                vaultDefaulted = true;
+                vaultID = Config.DefaultVault;
+            }
+
+            var vault = GetVaultConfig(vaultID);
+
+            if (vault == null)
+            {
+                if (vaultDefaulted)
+                {
+                    availability = EVaultAvailability.VaultAvailable;
+                    return permissedVaults.FirstOrDefault();
+                }
+                else
+                {
+                    availability = EVaultAvailability.BadVaultID;
+                    return null;
+                }
+            }
+
+            if (vault.HasPermission(player))
+            {
+                availability = EVaultAvailability.VaultAvailable;
+                return vault;
+            }
+            else
+            {
+                availability = EVaultAvailability.NotAllowed;
+                return null;
+            }
+        }
 
         public VaultConfig GetVaultConfig(string vaultID) =>
             VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));

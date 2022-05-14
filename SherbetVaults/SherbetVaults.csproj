@@ -35,12 +35,14 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\com.rlabrecque.steamworks.net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.19.4\lib\net45\Google.Protobuf.dll</HintPath>
@@ -66,21 +68,26 @@
     </Reference>
     <Reference Include="Rocket.API, Version=4.9.3.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.RocketMod.Redist.4.9.3.5\lib\net48\Rocket.API.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.Core, Version=4.9.3.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.RocketMod.Redist.4.9.3.5\lib\net48\Rocket.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.Unturned, Version=4.9.3.13, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.RocketMod.Redist.4.9.3.5\lib\net48\Rocket.Unturned.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RocketExtensions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.2.1.0\lib\net48\RocketExtensions.dll</HintPath>
     </Reference>
     <Reference Include="SDG.NetPak.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\SDG.NetPak.Runtime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SDG.NetTransport, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\SDG.NetTransport.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ShimmyMySherbet.MySQL.EF, Version=1.8.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShimmyMySherbet.MySQL.EF.1.8.8\lib\net48\ShimmyMySherbet.MySQL.EF.dll</HintPath>
@@ -88,6 +95,7 @@
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -99,13 +107,16 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -116,15 +127,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="SystemEx, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\SystemEx.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\Ubiety.Dns.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UniTask, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UniTask.2019.2.2.5\lib\net461\UniTask.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UniTask.Linq, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UniTask.2019.2.2.5\lib\net461\UniTask.Linq.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UnityEngine.Redist.2019.4.10\lib\net461\UnityEngine.dll</HintPath>
@@ -376,9 +391,11 @@
     </Reference>
     <Reference Include="UnityEx, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\UnityEx.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\ZstdNet.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -396,6 +413,7 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\Config\SherbetVaultsConfig.cs" />
     <Compile Include="Models\Config\VaultConfig.cs" />
+    <Compile Include="Models\EVaultAvailability.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\OfflinePlayerUtility.cs" />
     <Compile Include="Models\VaultItems.cs" />

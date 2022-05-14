@@ -2,6 +2,7 @@
 using Rocket.API;
 using RocketExtensions.Models;
 using RocketExtensions.Plugins;
+using SherbetVaults.Models;
 
 namespace SherbetVaults.Commands
 {
@@ -14,17 +15,27 @@ namespace SherbetVaults.Commands
         {
             var targetVault = context.Arguments.Get(0, defaultValue: string.Empty, paramName: "Vault Name");
 
-            var vaultConfig = Plugin.GetDefaultVault(targetVault, context.LDMPlayer);
+            var vaultConfig = Plugin.GetDefaultVault(context.LDMPlayer, out var availability, targetVault);
+
+            switch (availability)
+            {
+                case EVaultAvailability.BadVaultID:
+                    await context.ReplyKeyAsync("Vault_Fail_NotFound", targetVault);
+                    return;
+
+                case EVaultAvailability.NotAllowed:
+                    await context.ReplyKeyAsync("Vault_Fail_NoPermission", vaultConfig.VaultID);
+                    return;
+
+                case EVaultAvailability.NoVaults:
+                case EVaultAvailability.NoAllowedVaults:
+                    await context.ReplyKeyAsync("Vaults_No_Vaults");
+                    return;
+            }
 
             if (vaultConfig == null)
             {
-                await context.ReplyKeyAsync("Vault_Fail_NotFound", targetVault);
-                return;
-            }
-
-            if (!await context.CheckPermissionAsync(vaultConfig.Permission))
-            {
-                await context.ReplyKeyAsync("Vault_Fail_NoPermission", vaultConfig.VaultID);
+                await context.ReplyKeyAsync("Vault_Fail_CannotLoad", targetVault);
                 return;
             }
 
