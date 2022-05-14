@@ -29,7 +29,7 @@ namespace SherbetVaults.Models
 
             if (player != null)
             {
-                return (player.CSteamID.m_SteamID, Task.FromResult(player.DisplayName)));
+                return (player.CSteamID.m_SteamID, Task.FromResult(player.DisplayName));
             }
 
             return (0ul, Task.FromResult(string.Empty));
