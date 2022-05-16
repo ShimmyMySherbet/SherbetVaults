@@ -15,6 +15,7 @@ namespace SherbetVaults.Models.Config
         public bool CacheVaults = true;
         public bool LargestVaultIsDefault = false;
         public string DefaultVault = "default";
+        public bool VaultAliasesEnabled = false;
 
         public void LoadDefaults()
         {

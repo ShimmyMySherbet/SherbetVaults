@@ -400,13 +400,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\TrashCommand.cs" />
+    <Compile Include="Commands\VaultAliasCommand.cs" />
     <Compile Include="Commands\VaultCommand.cs" />
     <Compile Include="Commands\VaultsCommand.cs" />
     <Compile Include="Commands\SpyVaultCommand.cs" />
     <Compile Include="Commands\WipeVaultCommand.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
     <Compile Include="Database\DatabaseQueue.cs" />
+    <Compile Include="Database\Models\VaultAlias.cs" />
     <Compile Include="Database\Models\VaultItem.cs" />
+    <Compile Include="Database\Tables\VaultAliasTable.cs" />
     <Compile Include="Database\Tables\VaultItemsTable.cs" />
     <Compile Include="Models\Caching\PlayerVaultCache.cs" />
     <Compile Include="Models\Caching\VaultCache.cs" />

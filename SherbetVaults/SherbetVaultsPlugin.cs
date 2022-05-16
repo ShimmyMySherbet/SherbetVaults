@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Rocket.API;
 using Rocket.API.Collections;
 using Rocket.Core.Logging;
@@ -9,6 +10,7 @@ using SDG.Unturned;
 using SherbetVaults.Database;
 using SherbetVaults.Models;
 using SherbetVaults.Models.Config;
+using Steamworks;
 
 namespace SherbetVaults
 {
@@ -21,7 +23,7 @@ namespace SherbetVaults
 
         public override void LoadPlugin()
         {
-            Database = new DatabaseManager(Configuration.Instance.DatabaseSettings);
+            Database = new DatabaseManager(Configuration.Instance);
 
             if (!Database.Connect(out var failStr))
             {
@@ -57,6 +59,11 @@ namespace SherbetVaults
             { "Vaults_No_Vaults", "[color=yellow]You don't have access to any vaults[/color]" },
             { "Vaults_List", "[color=green]Your vaults: {0}[/color]" },
             { "WipeVault_Wiped", "[color=green]Wiped {0} items from {1}'s vault {2}[/color]" },
+            { "VaultAliases_MaxReached", "[color=red]Max vault aliases reached[/color]" },
+            { "VaultAliases_Set", "[color=cyan]Vault alias created: {0}➔{1}[/color]" },
+            { "VaultAliases_Removed", "[color=cyan]Removed alias {0}[/color]" },
+            { "VaultAliases_Remove_NotFound", "[color=cyan]No alias by that name found[/color]" },
+            { "VaultAliases_List", "[color=cyan]Aliases: {1}[/color]" },
         };
 
         public VaultConfig GetDefaultVault(LDMPlayer player, out EVaultAvailability availability, string vaultID = null)
@@ -115,6 +122,26 @@ namespace SherbetVaults
                 availability = EVaultAvailability.NotAllowed;
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets a player's default vault, with alias checking
+        /// </summary>
+        public async Task<(VaultConfig vault, EVaultAvailability availability)> GetPlayerVault(LDMPlayer player, string vaultID = null)
+        {
+            if (Config.VaultAliasesEnabled 
+                && player.UnturnedPlayer.HasPermission("SherbetVaults.Vault.Alias") 
+                && Database.Aliases != null
+                && !string.IsNullOrEmpty(vaultID))
+            {
+                var alias = await Database.Aliases.GetAliasAsync(player.PlayerID, vaultID);
+                if (alias != null)
+                {
+                    vaultID = alias;
+                }
+            }
+            var config = GetDefaultVault(player, out var availability, vaultID);
+            return (config, availability);
         }
 
         public VaultConfig GetVaultConfig(string vaultID) =>
