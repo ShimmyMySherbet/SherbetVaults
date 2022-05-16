@@ -10,16 +10,21 @@ using SDG.Unturned;
 using SherbetVaults.Database;
 using SherbetVaults.Models;
 using SherbetVaults.Models.Config;
-using Steamworks;
+using SherbetVaults.Models.Restrictions;
 
 namespace SherbetVaults
 {
     public class SherbetVaultsPlugin : RocketPlugin<SherbetVaultsConfig>
     {
         public DatabaseManager Database { get; private set; }
+        public VaultManager VaultManager { get; private set; }
+        public RestrictionBuilder RestrictionBuilder { get; private set; }
+
+        public ItemTableTool ItemTable { get; } = new ItemTableTool();
+
         public SherbetVaultsConfig Config => Configuration.Instance;
         public List<VaultConfig> VaultConfigs => Config.Vaults;
-        public VaultManager VaultManager { get; private set; }
+
 
         public override void LoadPlugin()
         {
@@ -35,15 +40,27 @@ namespace SherbetVaults
             Database.VaultItems.Queue.StartWorker();
 
             VaultManager = new VaultManager(this);
+            RestrictionBuilder = new RestrictionBuilder(this);
+
             Provider.onEnemyDisconnected += OnPlayerDisconnect;
+            Level.onLevelLoaded += OnLevelLoaded;
+
             base.LoadPlugin();
+        }
+
+        private void OnLevelLoaded(int lvl)
+        {
+            ItemTable.ReInit();
         }
 
         public override void UnloadPlugin(PluginState state = PluginState.Unloaded)
         {
-            base.UnloadPlugin(state);
             Provider.onEnemyDisconnected -= OnPlayerDisconnect;
+            Level.onLevelLoaded -= OnLevelLoaded;
+
             Database?.VaultItems?.Queue?.Dispose();
+
+            base.UnloadPlugin(state);
         }
 
         private void OnPlayerDisconnect(SteamPlayer player)
@@ -64,6 +81,7 @@ namespace SherbetVaults
             { "VaultAliases_Removed", "[color=cyan]Removed alias {0}[/color]" },
             { "VaultAliases_Remove_NotFound", "[color=cyan]No alias by that name found[/color]" },
             { "VaultAliases_List", "[color=cyan]Aliases: {1}[/color]" },
+            { "Restrictions_Blacklisted", "[color=red]You cannot store that item in your vault[/color]" }
         };
 
         public VaultConfig GetDefaultVault(LDMPlayer player, out EVaultAvailability availability, string vaultID = null)
@@ -129,8 +147,8 @@ namespace SherbetVaults
         /// </summary>
         public async Task<(VaultConfig vault, EVaultAvailability availability)> GetPlayerVault(LDMPlayer player, string vaultID = null)
         {
-            if (Config.VaultAliasesEnabled 
-                && player.UnturnedPlayer.HasPermission("SherbetVaults.Vault.Alias") 
+            if (Config.VaultAliasesEnabled
+                && player.UnturnedPlayer.HasPermission("SherbetVaults.Vault.Alias")
                 && Database.Aliases != null
                 && !string.IsNullOrEmpty(vaultID))
             {
