@@ -5,7 +5,7 @@ using SDG.Unturned;
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^(?i)Table\:[a-zA-Z]*$")]
+    [Selector(@"^(?i)Table\:[a-zA-Z0-9]*$")]
     public class ItemTableRestrictor : IItemRestrictor
     {
         public ItemTableTool ItemTables { get; }
