@@ -1,9 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Rocket.API;
-using Rocket.Unturned.Player;
 using RocketExtensions.Models;
 using RocketExtensions.Plugins;
-using SherbetVaults.Models;
+using SherbetVaults.Models.Utility;
 using UnityEngine;
 
 namespace SherbetVaults.Commands
@@ -27,7 +26,7 @@ namespace SherbetVaults.Commands
 
             var targetVault = context.Arguments.Get(1, Plugin.Config.DefaultVault, paramName: "VaultID");
 
-            var vaultConfig = Plugin.GetVaultConfig(targetVault);
+            var vaultConfig = Plugin.VaultSelector.GetVaultConfig(targetVault);
 
             if (vaultConfig == null)
             {

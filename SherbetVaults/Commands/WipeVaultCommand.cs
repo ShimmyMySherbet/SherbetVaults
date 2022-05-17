@@ -2,7 +2,7 @@
 using Rocket.API;
 using RocketExtensions.Models;
 using RocketExtensions.Plugins;
-using SherbetVaults.Models;
+using SherbetVaults.Models.Utility;
 using UnityEngine;
 
 namespace SherbetVaults.Commands

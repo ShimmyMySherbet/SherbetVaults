@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SherbetVaults.Database;
 using SherbetVaults.Models.Caching;
+using SherbetVaults.Models.Data;
 
 namespace SherbetVaults.Models
 {
@@ -28,7 +29,7 @@ namespace SherbetVaults.Models
                 }
             }
 
-            var vaultConfig = VaultsPlugin.GetVaultConfig(vaultID);
+            var vaultConfig = VaultsPlugin.VaultSelector.GetVaultConfig(vaultID);
 
             if (vaultConfig == null)
             {

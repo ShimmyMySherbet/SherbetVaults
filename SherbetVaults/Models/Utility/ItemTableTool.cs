@@ -3,12 +3,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using SDG.Unturned;
+using SherbetVaults.Models.Data;
 
-namespace SherbetVaults.Models
+namespace SherbetVaults.Models.Utility
 {
     public class ItemTableTool
     {
-        public List<RSpawnTable> Tables { get; private set; } = new List<RSpawnTable>();
+        public List<ItemSpawnTable> Tables { get; private set; } = new List<ItemSpawnTable>();
 
         public void ReInit()
         {
@@ -21,14 +22,14 @@ namespace SherbetVaults.Models
         public ushort[] GetTableIDs(Regex selector) =>
             Tables.Where(x => selector.IsMatch(x.Name)).Select(x => x.TableID).ToArray();
 
-        private List<RSpawnTable> GetSpawntables()
+        private List<ItemSpawnTable> GetSpawntables()
         {
-            var tables = new List<RSpawnTable>();
+            var tables = new List<ItemSpawnTable>();
 
             foreach (var table in LevelItems.tables)
             {
                 var items = ResolveItems(table);
-                tables.Add(new RSpawnTable(table.tableID, items, table.name));
+                tables.Add(new ItemSpawnTable(table.tableID, items, table.name));
             }
             return tables;
         }

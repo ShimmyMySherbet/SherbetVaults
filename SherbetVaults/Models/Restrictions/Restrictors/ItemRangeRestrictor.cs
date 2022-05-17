@@ -23,7 +23,8 @@ namespace SherbetVaults.Models.Restrictions.Restrictors
             {
                 StartID = value2;
                 EndID = value1;
-            } else
+            }
+            else
             {
                 StartID = value1;
                 EndID = value2;

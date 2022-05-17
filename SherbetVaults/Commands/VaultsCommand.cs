@@ -13,7 +13,7 @@ namespace SherbetVaults.Commands
     {
         public override async UniTask Execute(CommandContext context)
         {
-            var vaults = Plugin.GetPlayerVaults(context.LDMPlayer);
+            var vaults = Plugin.VaultSelector.GetPlayerVaults(context.LDMPlayer);
 
             if (vaults.Length == 0)
             {

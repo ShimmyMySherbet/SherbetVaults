@@ -1,10 +1,11 @@
 ﻿using System.Collections.Concurrent;
+using SherbetVaults.Models.Data;
 
 namespace SherbetVaults.Models.Caching
 {
     public class VaultCache
     {
-        private ConcurrentDictionary<ulong, PlayerVaultCache> m_Caches = new ConcurrentDictionary<ulong, PlayerVaultCache>();
+        private readonly ConcurrentDictionary<ulong, PlayerVaultCache> m_Caches = new ConcurrentDictionary<ulong, PlayerVaultCache>();
 
         public VaultItems GetStorage(ulong playerID, string vaultID)
         {

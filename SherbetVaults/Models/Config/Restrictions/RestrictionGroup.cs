@@ -5,7 +5,7 @@ namespace SherbetVaults.Models.Config.Restrictions
 {
     public class RestrictionGroup
     {
-        public string GroupID;
+        public string GroupID = "Group1";
         public bool Blacklist = true;
         public string TranslationKey = "Restrictions_Blacklisted";
 

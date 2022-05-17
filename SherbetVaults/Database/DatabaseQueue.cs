@@ -9,8 +9,8 @@ namespace SherbetVaults.Database
 {
     public class DatabaseQueue<T> : IDisposable
     {
-        private ConcurrentQueue<AsyncDatabaseAction<T>> m_DatabaseQueue = new ConcurrentQueue<AsyncDatabaseAction<T>>();
-        private SemaphoreSlim m_QueueSemaphore = new SemaphoreSlim(0);
+        private readonly ConcurrentQueue<AsyncDatabaseAction<T>> m_DatabaseQueue = new ConcurrentQueue<AsyncDatabaseAction<T>>();
+        private readonly SemaphoreSlim m_QueueSemaphore = new SemaphoreSlim(0);
 
         private CancellationTokenSource m_TokenSource = new CancellationTokenSource();
         public CancellationToken Token => m_TokenSource.Token;

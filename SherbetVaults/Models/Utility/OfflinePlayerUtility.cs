@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Rocket.Unturned.Player;
 
-namespace SherbetVaults.Models
+namespace SherbetVaults.Models.Utility
 {
     public static class OfflinePlayerUtility
     {

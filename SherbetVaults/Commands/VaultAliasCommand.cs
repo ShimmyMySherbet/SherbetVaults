@@ -29,7 +29,7 @@ namespace SherbetVaults.Commands
                     var vaultID = context.Arguments.Get<string>(1, paramName: "VaultName");
                     var vaultAlias = context.Arguments.Get<string>(2, paramName: "Alias");
 
-                    var vaultConfig = Plugin.GetVaultConfig(vaultID);
+                    var vaultConfig = Plugin.VaultSelector.GetVaultConfig(vaultID);
                     if (vaultConfig == null)
                     {
                         await context.ReplyKeyAsync("Vault_Fail_NotFound", vaultID);

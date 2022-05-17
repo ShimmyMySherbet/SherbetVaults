@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using SherbetVaults.Database.Models;
 using ShimmyMySherbet.MySQL.EF.Core;
-using System.Linq;
 namespace SherbetVaults.Database.Tables
 {
     public class VaultAliasTable : DatabaseTable<VaultAlias>

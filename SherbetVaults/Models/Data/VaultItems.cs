@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Rocket.Core.Logging;
 using RocketExtensions.Models;
 using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
 using SDG.Unturned;
 using SherbetVaults.Database;
 using SherbetVaults.Database.Tables;
 
-namespace SherbetVaults.Models
+namespace SherbetVaults.Models.Data
 {
     public class VaultItems : Items
     {

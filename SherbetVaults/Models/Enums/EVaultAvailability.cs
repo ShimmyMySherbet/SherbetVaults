@@ -1,4 +1,4 @@
-﻿namespace SherbetVaults.Models
+﻿namespace SherbetVaults.Models.Enums
 {
     public enum EVaultAvailability
     {

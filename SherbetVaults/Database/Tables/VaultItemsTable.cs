@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using SDG.Unturned;
 using SherbetVaults.Database.Models;
-using SherbetVaults.Models;
 using SherbetVaults.Models.Config;
+using SherbetVaults.Models.Data;
 using ShimmyMySherbet.MySQL.EF.Core;
 
 namespace SherbetVaults.Database.Tables

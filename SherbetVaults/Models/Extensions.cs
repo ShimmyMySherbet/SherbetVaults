@@ -9,7 +9,6 @@ using Rocket.Core;
 using RocketExtensions.Models;
 using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
 using SDG.Unturned;
-using Steamworks;
 
 namespace SherbetVaults.Models
 {

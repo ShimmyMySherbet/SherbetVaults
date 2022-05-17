@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using SherbetVaults.Models.Data;
 
 namespace SherbetVaults.Models.Caching
 {
     public class PlayerVaultCache
     {
         public ulong PlayerID { get; }
-        private ConcurrentDictionary<string, VaultItems> m_Vaults = new ConcurrentDictionary<string, VaultItems>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly ConcurrentDictionary<string, VaultItems> m_Vaults = new ConcurrentDictionary<string, VaultItems>(StringComparer.InvariantCultureIgnoreCase);
 
         public PlayerVaultCache(ulong playerID)
         {

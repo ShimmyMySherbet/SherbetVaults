@@ -12,11 +12,18 @@ namespace SherbetVaults.Database
         public DatabaseManager(SherbetVaultsConfig config) : base(config.DatabaseSettings, autoInit: false)
         {
             if (config.VaultAliasesEnabled)
-            {
                 Aliases = new VaultAliasTable("SherbetVaults_Aliases");
-            }
 
             Init();
+        }
+
+        public void InitQueue() =>
+            VaultItems.Queue.StartWorker();
+
+        public void Dispose()
+        {
+            VaultItems.Queue.Dispose();
+            Client.Dispose();
         }
     }
 }

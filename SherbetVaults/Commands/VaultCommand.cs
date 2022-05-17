@@ -2,7 +2,7 @@
 using Rocket.API;
 using RocketExtensions.Models;
 using RocketExtensions.Plugins;
-using SherbetVaults.Models;
+using SherbetVaults.Models.Enums;
 
 namespace SherbetVaults.Commands
 {
@@ -15,7 +15,7 @@ namespace SherbetVaults.Commands
         {
             var targetVault = context.Arguments.Get(0, defaultValue: string.Empty, paramName: "Vault Name");
 
-            var (vaultConfig, availability) = await Plugin.GetPlayerVault(context.LDMPlayer, targetVault);
+            var (vaultConfig, availability) = await Plugin.VaultSelector.GetPlayerVaultAliased(context.LDMPlayer, targetVault);
 
             switch (availability)
             {

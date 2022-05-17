@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SDG.Unturned;
 
 namespace SherbetVaults.Models.Config.Restrictions
 {
