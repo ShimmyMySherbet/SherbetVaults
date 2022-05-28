@@ -32,7 +32,7 @@ Sets the vault types, their permissions, and size.
 `$VaultID` acts as a short-cut to the vault's ID.
 
 ### Cache Vaults
-Specifies if the plugin should cache each player's vault fur the duration of their play-session.
+Specifies if the plugin should cache each player's vault for the duration of their play-session.
 
 Provides a minor speed boost to subsequent uses of the `/vault` command.
 
