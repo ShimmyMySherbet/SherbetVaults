@@ -78,8 +78,8 @@
       <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.RocketMod.Redist.4.9.3.5\lib\net48\Rocket.Unturned.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RocketExtensions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.2.1.0\lib\net48\RocketExtensions.dll</HintPath>
+    <Reference Include="RocketExtensions, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShimmyMySherbet.RocketExtensions.2.1.2\lib\net48\RocketExtensions.dll</HintPath>
     </Reference>
     <Reference Include="SDG.NetPak.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.Unturned.Redist.3.22.1\lib\net461\SDG.NetPak.Runtime.dll</HintPath>
@@ -421,6 +421,8 @@
     <Compile Include="Models\Config\VaultConfig.cs" />
     <Compile Include="Models\Enums\EVaultAvailability.cs" />
     <Compile Include="Models\Extensions.cs" />
+    <Compile Include="Models\Restrictions\VaultRestrictionGroup.cs" />
+    <Compile Include="Models\RestrictionTool.cs" />
     <Compile Include="Models\Utility\ItemTableTool.cs" />
     <Compile Include="Models\Utility\OfflinePlayerUtility.cs" />
     <Compile Include="Models\Restrictions\BadSelectorException.cs" />

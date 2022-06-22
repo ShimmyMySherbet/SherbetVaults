@@ -10,9 +10,12 @@ namespace SherbetVaults.Database.Tables
     public class VaultItemsTable : DatabaseTable<VaultItem>
     {
         public DatabaseQueue<VaultItemsTable> Queue { get; }
+        public SherbetVaultsPlugin Plugin { get; }
 
-        public VaultItemsTable(string tableName) : base(tableName)
+
+        public VaultItemsTable(SherbetVaultsPlugin plugin, string tableName) : base(tableName)
         {
+            Plugin = plugin;
             Queue = new DatabaseQueue<VaultItemsTable>(this);
         }
 

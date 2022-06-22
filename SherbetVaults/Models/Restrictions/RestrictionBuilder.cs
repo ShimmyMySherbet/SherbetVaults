@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Rocket.Core.Logging;
+using SherbetVaults.Models.Config.Restrictions;
 
 namespace SherbetVaults.Models.Restrictions
 {
@@ -36,6 +38,33 @@ namespace SherbetVaults.Models.Restrictions
 
                 Restrictors.Add((selectorTag.Regex, type));
             }
+        }
+
+
+        public List<VaultRestrictionGroup> BuildGroups(RestrictionSettings settings, out int errors)
+        {
+            errors = 0;
+            var groups = new List<VaultRestrictionGroup>();
+            foreach (var group in settings.Groups)
+            {
+                var restrictors = new List<IItemRestrictor>();
+                foreach (var selector in group.Selectors)
+                {
+                    try
+                    {
+                        var restrictor = Build(selector);
+                        restrictors.Add(restrictor);
+                    }
+                    catch (BadSelectorException ex)
+                    {
+                        errors++;
+                        Logger.LogError($"Bad Item Selector in Restriction Group {group.GroupID}: {ex.Message}");
+                    }
+                }
+
+                groups.Add(new VaultRestrictionGroup(group, restrictors));
+            }
+            return groups;
         }
 
         public IItemRestrictor Build(string selector)

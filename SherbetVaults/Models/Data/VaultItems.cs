@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using RocketExtensions.Models;
+using RocketExtensions.Utilities;
 using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
 using SDG.Unturned;
 using SherbetVaults.Database;
@@ -15,14 +17,18 @@ namespace SherbetVaults.Models.Data
         public new byte page => 7;
 
         public DatabaseQueue<VaultItemsTable> Database { get; }
+        public SherbetVaultsPlugin Plugin { get; }
 
         public bool SyncToDatabase { get; private set; } = false;
 
-        public VaultItems(ulong playerID, string vaultID, DatabaseQueue<VaultItemsTable> database) : base(7)
+        public LDMPlayer Player { get; private set; }
+
+        public VaultItems(ulong playerID, string vaultID, SherbetVaultsPlugin plugin) : base(7)
         {
             PlayerID = playerID;
             VaultID = vaultID;
-            Database = database;
+            Plugin = plugin;
+            Database = plugin.Database.VaultItems.Queue;
             onItemUpdated += ItemUpdated;
             onItemAdded += ItemAdded;
             onItemRemoved += ItemRemoved;
@@ -54,6 +60,16 @@ namespace SherbetVaults.Models.Data
         {
             if (!SyncToDatabase)
                 return;
+
+            if (!Plugin.RestrictionTool.IsPermitted(jar.item.id, Player, out var group))
+            {
+                var message = Plugin.Translate(group.TranslationKey, group.GroupID).ReformatColor();
+                ThreadPool.QueueUserWorkItem(async (_) => await Player.MessageAsync(message));
+                items.Remove(jar);
+
+                Player.Player.inventory.tryAddItem(jar.item, true, false);
+                return;
+            }
 
             Database.Enqueue(async (table) =>
             {
@@ -94,14 +110,13 @@ namespace SherbetVaults.Models.Data
         {
         }
 
-        public void OpenForPlayer(Player player)
+        public void OpenForPlayer(LDMPlayer ldm)
         {
+            Player = ldm;
+            var player = ldm.Player;
             player.inventory.updateItems(7, this);
             player.inventory.sendStorage();
         }
-
-        public void OpenForPlayer(LDMPlayer ldm) =>
-            OpenForPlayer(ldm.Player);
 
         public async Task OpenForPlayerAsync(LDMPlayer player) =>
             await ThreadTool.RunOnGameThreadAsync(OpenForPlayer, player);
