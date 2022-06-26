@@ -21,10 +21,11 @@ namespace SherbetVaults
         public VaultSelector VaultSelector { get; private set; }
         public RestrictionBuilder RestrictionBuilder { get; private set; }
         public RestrictionTool RestrictionTool { get; private set; }
-        public ItemTableTool ItemTable { get; } = new ItemTableTool();
+        public ItemTableTool ItemTable { get; private set; }
+        public List<VaultRestrictionGroup> RestrictionGroups { get; private set; }
+
         public SherbetVaultsConfig Config => Configuration.Instance;
         public List<VaultConfig> VaultConfigs => Config.Vaults;
-        public List<VaultRestrictionGroup> RestrictionGroups { get; private set; } = new List<VaultRestrictionGroup>();
 
 
 
@@ -38,6 +39,9 @@ namespace SherbetVaults
             RestrictionBuilder = new RestrictionBuilder(this);
             RestrictionTool = new RestrictionTool(this);
             Database = new DatabaseManager(this);
+            VaultSelector = new VaultSelector(this);
+            ItemTable = new ItemTableTool();
+            RestrictionGroups = new List<VaultRestrictionGroup>();
 
             if (!Database.Connect(out var errorMessage))
             {
