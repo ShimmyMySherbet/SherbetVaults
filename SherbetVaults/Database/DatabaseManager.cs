@@ -8,7 +8,7 @@ namespace SherbetVaults.Database
         public VaultItemsTable VaultItems { get; }
         public VaultAliasTable Aliases { get; }
 
-        public DatabaseManager(SherbetVaultsPlugin plugin) : base(plugin.Config.DatabaseSettings, autoInit: false)
+        public DatabaseManager(SherbetVaultsPlugin plugin) : base(plugin.Config.DatabaseSettings, autoInit: false, singleConnectionMode: plugin.Config.SingletonDatabaseConnection)
         {
             VaultItems = new VaultItemsTable(plugin, "SherbetVaults_Items");
 

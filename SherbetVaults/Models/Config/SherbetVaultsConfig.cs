@@ -9,7 +9,7 @@ namespace SherbetVaults.Models.Config
     public class SherbetVaultsConfig : IRocketPluginConfiguration
     {
         public DatabaseSettings DatabaseSettings;
-
+        public bool SingletonDatabaseConnection = true;
         public bool CacheVaults = true;
         public bool LargestVaultIsDefault = false;
         public string DefaultVault = "default";
