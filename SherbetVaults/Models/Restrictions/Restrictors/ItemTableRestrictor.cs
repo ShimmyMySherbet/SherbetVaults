@@ -15,13 +15,24 @@ namespace SherbetVaults.Models.Restrictions.Restrictors
 
         public Regex Regex { get; }
 
-        public bool IsMatch(ItemAsset asset) =>
-            ItemTables.GetTableIDs(asset.id).Contains(ItemTableID);
+        public bool IsMatch(ItemAsset asset)
+        {
+            if (Regex == null)
+            {
+                return ItemTables.GetTableIDs(asset.id).Contains(ItemTableID);
+            }
+            else
+            {
+                return ItemTables.GetTableIDs(Regex).Contains(ItemTableID);
+            }
+        }
 
         public ItemTableRestrictor(ItemTableTool itemTables, string selector)
         {
             ItemTables = itemTables;
-            if (ushort.TryParse(selector, out var id))
+            var table = selector.Substring(6);
+
+            if (ushort.TryParse(table, out var id))
             {
                 // Match by table ID
                 ItemTableID = id;
@@ -31,8 +42,7 @@ namespace SherbetVaults.Models.Restrictions.Restrictors
             {
                 // Match by name selector
                 ItemTableID = 0;
-                var s = selector
-                    .ToLower()
+                var s = table
                     .Replace("*", "§");
                 s = Regex.Escape(s)
                     .Replace("§", ".*");

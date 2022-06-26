@@ -49,6 +49,8 @@ namespace SherbetVaults
             Database.CheckSchema();
             Database.InitQueue();
 
+            RestrictionBuilder.Init();
+
             Logger.Log("Loading restriction settings...");
             RestrictionGroups = RestrictionBuilder.BuildGroups(Config.Restrictions, out var errors);
 

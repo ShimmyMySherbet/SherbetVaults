@@ -11,6 +11,7 @@ namespace SherbetVaults.Models.Restrictions
         public SelectorAttribute(string regexSelector)
         {
             Selector = regexSelector;
+            Regex = new Regex(regexSelector);
         }
     }
 }

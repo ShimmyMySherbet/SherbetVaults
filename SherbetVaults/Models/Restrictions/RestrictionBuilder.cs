@@ -40,10 +40,9 @@ namespace SherbetVaults.Models.Restrictions
             }
         }
 
-
         public List<VaultRestrictionGroup> BuildGroups(RestrictionSettings settings, out int errors)
         {
-            errors = 0;
+            var err = 0;
             var groups = new List<VaultRestrictionGroup>();
             foreach (var group in settings.Groups)
             {
@@ -57,25 +56,34 @@ namespace SherbetVaults.Models.Restrictions
                     }
                     catch (BadSelectorException ex)
                     {
-                        errors++;
+                        err++;
                         Logger.LogError($"Bad Item Selector in Restriction Group {group.GroupID}: {ex.Message}");
+                    }
+                    catch (Exception exc)
+                    {
+                        err++;
+                        Logger.LogError($"Exception building restrictor '{selector}'");
+                        Logger.LogError(exc.Message);
+                        Logger.LogError(exc.StackTrace);
                     }
                 }
 
                 groups.Add(new VaultRestrictionGroup(group, restrictors));
             }
+            errors = err;
             return groups;
         }
 
         public IItemRestrictor Build(string selector)
         {
-            var matchingType = Restrictors.FirstOrDefault(x => x.selector.IsMatch(selector));
-            if (matchingType.type == null)
+            var restrictor = Restrictors.FirstOrDefault(x => x.selector.IsMatch(selector));
+
+            if (restrictor.type == null)
             {
                 throw new BadSelectorException($"Unknown selector format '{selector}'");
             }
 
-            return Instantiate(matchingType.type, selector, Plugin);
+            return Instantiate(restrictor.type, selector, Plugin);
         }
 
         public IItemRestrictor Instantiate(Type t, string selector, SherbetVaultsPlugin plugin)
@@ -115,10 +123,19 @@ namespace SherbetVaults.Models.Restrictions
                 {
                     continue;
                 }
-
-                return (IItemRestrictor)construct.Invoke(arguments);
+                try
+                {
+                    return (IItemRestrictor)construct.Invoke(arguments);
+                }
+                catch (TargetInvocationException ex)
+                {
+                    if (ex.InnerException != null)
+                    {
+                        throw ex.InnerException;
+                    }
+                    throw;
+                }
             }
-
             return null;
         }
     }

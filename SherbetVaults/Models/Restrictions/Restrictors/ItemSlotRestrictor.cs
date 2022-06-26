@@ -13,7 +13,7 @@ namespace SherbetVaults.Models.Restrictions.Restrictors
 
         public ItemSlotRestrictor(string selector)
         {
-            var slotName = selector.Substring(0, 5);
+            var slotName = selector.Substring(5);
             if (!Enum.TryParse<ESlotType>(slotName.ToUpper(), out var slot))
                 throw new BadSelectorException($"Slot: Invalid slot '{slotName}'. Acceptable: None, Primary, Secondary, Tertiary, Any");
             Slot = slot;
