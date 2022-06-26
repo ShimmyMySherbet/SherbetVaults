@@ -54,7 +54,7 @@ namespace SherbetVaults
             Logger.Log("Loading restriction settings...");
             RestrictionGroups = RestrictionBuilder.BuildGroups(Config.Restrictions, out var errors);
 
-            if (errors > 0)
+            if (errors == 0)
             {
                 Logger.Log($"Loaded {RestrictionGroups.Count} Restriction Groups with no errors.");
             }
