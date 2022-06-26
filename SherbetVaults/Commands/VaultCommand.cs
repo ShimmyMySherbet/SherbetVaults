@@ -15,7 +15,7 @@ namespace SherbetVaults.Commands
         {
             var targetVault = context.Arguments.Get(0, defaultValue: string.Empty, paramName: "Vault Name");
 
-            var (vaultConfig, availability) = await Plugin.VaultSelector.GetPlayerVaultAliased(context.LDMPlayer, targetVault);
+            var (vaultConfig, availability) = await Plugin.VaultSelector.GetVault(context.LDMPlayer, targetVault);
 
             switch (availability)
             {
@@ -39,7 +39,7 @@ namespace SherbetVaults.Commands
                 return;
             }
 
-            var vault = await Plugin.VaultManager.GetVault(context.PlayerID, targetVault);
+            var vault = await Plugin.VaultManager.GetVault(context.PlayerID, vaultConfig.VaultID);
 
             if (vault == null)
             {

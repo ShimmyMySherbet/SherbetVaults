@@ -59,7 +59,7 @@ namespace SherbetVaults.Commands
 
                     await Plugin.Database.Aliases.SetAliasAsync(context.PlayerID, vaultID, vaultAlias);
 
-                    await context.ReplyKeyAsync("VaultAliases_Set", Aliases, vaultConfig.VaultID);
+                    await context.ReplyKeyAsync("VaultAliases_Set", string.Join(", ", Aliases), vaultConfig.VaultID);
                     return;
 
                 case "remove":

@@ -16,7 +16,7 @@ namespace SherbetVaults.Models.Utility
             Plugin = plugin;
         }
 
-        public VaultConfig GetDefaultVault(LDMPlayer player, out EVaultAvailability availability, string vaultID)
+        private VaultConfig GetDefaultVault(LDMPlayer player, out EVaultAvailability availability, string vaultID)
         {
             if (Plugin.VaultConfigs.Count == 0)
             {
@@ -74,12 +74,13 @@ namespace SherbetVaults.Models.Utility
             }
         }
 
-        public async Task<(VaultConfig vault, EVaultAvailability availability)> GetPlayerVaultAliased(LDMPlayer player, string vaultID)
+        public async Task<(VaultConfig vault, EVaultAvailability availability)> GetVault(LDMPlayer player, string vaultID, bool allowAliases = true)
         {
-            if (Plugin.Config.VaultAliasesEnabled
+            if (allowAliases
+                && Plugin.Config.VaultAliasesEnabled
                 && player.UnturnedPlayer.HasPermission("SherbetVaults.Vault.Alias")
                 && Plugin.Database.Aliases != null
-                && !string.IsNullOrEmpty(vaultID))
+                && !string.IsNullOrWhiteSpace(vaultID))
             {
                 var alias = await Plugin.Database.Aliases.GetAliasAsync(player.PlayerID, vaultID);
                 if (alias != null)
@@ -94,7 +95,7 @@ namespace SherbetVaults.Models.Utility
         public VaultConfig GetVaultConfig(string vaultID) =>
             Plugin.VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
 
-        public VaultConfig GetLargetVault(LDMPlayer player) =>
+        private VaultConfig GetLargetVault(LDMPlayer player) =>
             GetPlayerVaults(player)
             .OrderByDescending(x => x.Width * x.Height)
             .FirstOrDefault();
