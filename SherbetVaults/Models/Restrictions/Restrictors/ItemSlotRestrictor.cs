@@ -3,7 +3,7 @@ using SDG.Unturned;
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^(?i)Slot\:[a-zA-Z]*$")]
+    [Selector(@"Slot:.*")]
     public class ItemSlotRestrictor : IItemRestrictor
     {
         public ESlotType Slot { get; }

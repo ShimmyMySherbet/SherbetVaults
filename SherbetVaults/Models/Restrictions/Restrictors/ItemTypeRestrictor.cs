@@ -3,7 +3,7 @@ using SDG.Unturned;
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^(?i)Type\:[a-zA-Z]*$")]
+    [Selector(@"^Type:.*")]
     public class ItemTypeRestrictor : IItemRestrictor
     {
         public EItemType ItemType { get; }

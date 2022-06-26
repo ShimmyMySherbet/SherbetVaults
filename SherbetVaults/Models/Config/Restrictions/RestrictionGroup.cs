@@ -3,9 +3,10 @@ using System.Xml.Serialization;
 
 namespace SherbetVaults.Models.Config.Restrictions
 {
+    [XmlRoot]
     public class RestrictionGroup
     {
-        [XmlAttribute, XmlElement(ElementName = "ID")]
+        [XmlAttribute]
         public string GroupID = "Group1";
 
         [XmlAttribute]

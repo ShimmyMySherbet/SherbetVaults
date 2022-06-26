@@ -2,7 +2,7 @@
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^[0-9]*\-[0-9]*$")]
+    [Selector(@"^\d+-\d+$")]
     public class ItemRangeRestrictor : IItemRestrictor
     {
         public ushort StartID { get; }

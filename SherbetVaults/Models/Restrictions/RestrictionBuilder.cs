@@ -70,6 +70,10 @@ namespace SherbetVaults.Models.Restrictions
         public IItemRestrictor Build(string selector)
         {
             var matchingType = Restrictors.FirstOrDefault(x => x.selector.IsMatch(selector));
+            if (matchingType.type == null)
+            {
+                throw new BadSelectorException($"Unknown selector format '{selector}'");
+            }
 
             return Instantiate(matchingType.type, selector, Plugin);
         }

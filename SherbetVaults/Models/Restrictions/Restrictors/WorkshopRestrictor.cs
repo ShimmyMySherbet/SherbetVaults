@@ -4,7 +4,7 @@ using SDG.Unturned;
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^(?i)Workshop\:[0-9]*$")]
+    [Selector(@"^Workshop:.*")]
     public class WorkshopRestrictor : IItemRestrictor
     {
         public uint WorkshopID { get; }

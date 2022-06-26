@@ -6,7 +6,7 @@ using SherbetVaults.Models.Utility;
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^(?i)Table\:[a-zA-Z0-9]*$")]
+    [Selector(@"^Table:.*")]
     public class ItemTableRestrictor : IItemRestrictor
     {
         public ItemTableTool ItemTables { get; }

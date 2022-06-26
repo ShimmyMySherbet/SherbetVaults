@@ -2,7 +2,7 @@
 
 namespace SherbetVaults.Models.Restrictions.Restrictors
 {
-    [Selector(@"^[0-9]*$")]
+    [Selector(@"^\d+$")]
     public class ItemRestrictor : IItemRestrictor
     {
         public ushort ItemID { get; }

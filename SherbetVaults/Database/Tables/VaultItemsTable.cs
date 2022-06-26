@@ -22,7 +22,7 @@ namespace SherbetVaults.Database.Tables
         public async Task<VaultItems> OpenVault(ulong playerID, string vaultID, VaultConfig config)
         {
             var items = await QueryAsync("SELECT * FROM @TABLE WHERE PlayerID=@0 AND VaultID=@1", playerID, vaultID);
-            var vi = new VaultItems(playerID, vaultID, Queue);
+            var vi = new VaultItems(playerID, vaultID, Plugin);
             vi.loadSize(config.Width, config.Height);
             foreach (var item in items)
             {
