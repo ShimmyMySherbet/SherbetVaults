@@ -24,7 +24,7 @@ namespace SherbetVaults.Commands
                     return;
 
                 case EVaultAvailability.NotAllowed:
-                    await context.ReplyKeyAsync("Vault_Fail_NoPermission", vaultConfig.VaultID);
+                    await context.ReplyKeyAsync("Vault_Fail_NoPermission", targetVault);
                     return;
 
                 case EVaultAvailability.NoVaults:
