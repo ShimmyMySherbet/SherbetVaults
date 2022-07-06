@@ -39,11 +39,11 @@ namespace SherbetVaults.Commands
                 return;
             }
 
-            var vault = await Plugin.VaultManager.GetVault(context.PlayerID, targetVault);
+            var vault = await Plugin.VaultManager.GetVault(context.PlayerID, vaultConfig.VaultID);
 
             if (vault == null)
             {
-                await context.ReplyKeyAsync("Vault_Fail_CannotLoad", targetVault);
+                await context.ReplyKeyAsync("Vault_Fail_CannotLoad", vaultConfig.VaultID);
                 return;
             }
 
