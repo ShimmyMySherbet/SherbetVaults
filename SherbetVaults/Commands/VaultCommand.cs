@@ -43,7 +43,7 @@ namespace SherbetVaults.Commands
 
             if (vault == null)
             {
-                await context.ReplyKeyAsync("Vault_Fail_CannotLoad", targetVault);
+                await context.ReplyKeyAsync("Vault_Fail_CannotLoad", vaultConfig.VaultID);
                 return;
             }
 
