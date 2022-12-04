@@ -95,3 +95,6 @@ See <a href="https://github.com/ShimmyMySherbet/SherbetVaults/blob/master/ItemRe
 
 ## Download
 Downloads can be found in the <a href="https://github.com/ShimmyMySherbet/SherbetVaults/releases/">Releases</a> page.
+
+## Donate
+I work on the project free of charge for everyone to use. Though, if your feeling generous, consider <a href="https://ko-fi.com/ShimmyMySherbet">buying me a coffee</a>
