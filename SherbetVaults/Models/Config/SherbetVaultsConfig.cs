@@ -14,6 +14,8 @@ namespace SherbetVaults.Models.Config
         public string DefaultVault = "default";
         public bool VaultAliasesEnabled = false;
 
+        public string DatabaseTablePrefix = "SherbetVaults";
+
         [XmlArrayItem(ElementName = "Vault")]
         public List<VaultConfig> Vaults = new();
 

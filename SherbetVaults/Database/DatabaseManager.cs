@@ -14,11 +14,11 @@ namespace SherbetVaults.Database
         public DatabaseManager(SherbetVaultsPlugin plugin) : base(connectionProvider: new TransientConnectionProvider(plugin.Config.DatabaseSettings), autoInit: false)
         {
             Queue = new DatabaseQueue<DatabaseManager>(this);
-            VaultItems = new VaultItemsTable(plugin, "SherbetVaults_Items");
-            Transactions = new VaultTransactionsTable("SherbetVaults_History");
+            VaultItems = new VaultItemsTable(plugin, $"{plugin.Config.DatabaseTablePrefix}_Items");
+            Transactions = new VaultTransactionsTable($"{plugin.Config.DatabaseTablePrefix}_History");
 
             if (plugin.Config.VaultAliasesEnabled)
-                Aliases = new VaultAliasTable("SherbetVaults_Aliases");
+                Aliases = new VaultAliasTable($"{plugin.Config.DatabaseTablePrefix}_Aliases");
 
             Init();
         }
