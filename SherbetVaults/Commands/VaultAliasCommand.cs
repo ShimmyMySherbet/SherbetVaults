@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Transactions;
 using Cysharp.Threading.Tasks;
 using Rocket.API;
 using RocketExtensions.Models;
@@ -59,7 +60,9 @@ namespace SherbetVaults.Commands
 
                     await Plugin.Database.Aliases.SetAliasAsync(context.PlayerID, vaultID, vaultAlias);
 
-                    await context.ReplyKeyAsync("VaultAliases_Set", string.Join(", ", Aliases), vaultConfig.VaultID);
+                    var newAliases = currentAliases.Append(vaultAlias);
+
+                    await context.ReplyKeyAsync("VaultAliases_Set", string.Join(", ", newAliases), vaultConfig.VaultID);
                     return;
 
                 case "remove":
