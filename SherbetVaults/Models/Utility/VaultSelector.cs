@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Rocket.API;
 using RocketExtensions.Models;
@@ -93,7 +94,7 @@ namespace SherbetVaults.Models.Utility
         }
 
         public VaultConfig GetVaultConfig(string vaultID) =>
-            Plugin.VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID));
+            Plugin.VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID, StringComparison.InvariantCultureIgnoreCase));
 
         private VaultConfig GetLargetVault(LDMPlayer player) =>
             GetPlayerVaults(player)
