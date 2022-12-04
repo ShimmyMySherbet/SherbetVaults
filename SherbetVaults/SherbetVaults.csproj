@@ -442,6 +442,7 @@
     <Compile Include="Models\Utility\VaultSelector.cs" />
     <Compile Include="Models\Data\VaultItems.cs" />
     <Compile Include="Models\VaultManager.cs" />
+    <Compile Include="Models\VaultPlayerLock.cs" />
     <Compile Include="Models\VaultStoreDeniedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SherbetVaultsPlugin.cs" />
