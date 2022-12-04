@@ -16,8 +16,9 @@ namespace SherbetVaults
             { "VaultAliases_Set", "[color=cyan]Vault alias created: {0}➔{1}[/color]" },
             { "VaultAliases_Removed", "[color=cyan]Removed alias {0}[/color]" },
             { "VaultAliases_Remove_NotFound", "[color=cyan]No alias by that name found[/color]" },
-            { "VaultAliases_List", "[color=cyan]Aliases: {1}[/color]" },
-            { "Restrictions_Blacklisted", "[color=red]You cannot store that item in your vault[/color]" }
+            { "VaultAliases_List", "Aliases: {1}" },
+            { "Restrictions_Blacklisted", "[color=red]You cannot store that item in your vault[/color]" },
+            { "VaultAliases_Disabled", "[color=red]Vault aliases are disabled on this server[/color]" }
         };
     }
 }

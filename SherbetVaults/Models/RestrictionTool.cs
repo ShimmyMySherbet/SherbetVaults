@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Rocket.API;
-using Rocket.Core.Logging;
 using RocketExtensions.Models;
 using SDG.Unturned;
 using SherbetVaults.Models.Config.Restrictions;
@@ -38,7 +37,6 @@ namespace SherbetVaults.Models
 
             if (asset == null)
             {
-                Logger.LogWarning($"Player {player.PlayerID} tried to put an unrecognized item in their vault. Item ID: {itemID}");
                 return false;
             }
 

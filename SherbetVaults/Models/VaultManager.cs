@@ -20,14 +20,14 @@ namespace SherbetVaults.Models
 
         public async Task<VaultItems> GetVault(ulong playerID, string vaultID, bool allowCache = true)
         {
-            if (EnableCache && allowCache)
-            {
-                var cached = VaultsCache.GetStorage(playerID, vaultID);
-                if (cached != null)
-                {
-                    return cached;
-                }
-            }
+            //if (EnableCache && allowCache)
+            //{
+            //    var cached = VaultsCache.GetStorage(playerID, vaultID);
+            //    if (cached != null)
+            //    {
+            //        return cached;
+            //    }
+            //}
 
             var vaultConfig = VaultsPlugin.VaultSelector.GetVaultConfig(vaultID);
 

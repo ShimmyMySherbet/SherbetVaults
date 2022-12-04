@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Rocket.Core.Logging;
 using RocketExtensions.Models;
 using RocketExtensions.Utilities;
 using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
@@ -68,7 +69,12 @@ namespace SherbetVaults.Models.Data
                 items.Remove(jar);
 
                 Player.Player.inventory.tryAddItem(jar.item, true, false);
-                return;
+
+                Logger.Log($"({Player.DisplayName}) tried to store blacklisted item ({jar.item.id}) in vault {VaultID}.");
+                Logger.Log("Please disregard the following error message.");
+
+                // Throw an error to prevent the item being stored client-side
+                throw new VaultStoreDeniedException();
             }
 
             Database.Enqueue(async (table) =>

@@ -19,14 +19,18 @@ namespace SherbetVaults.Database.Tables
         public async Task<VaultItems> OpenVault(ulong playerID, string vaultID, VaultConfig config)
         {
             var items = await QueryAsync("SELECT * FROM @TABLE WHERE PlayerID=@0 AND VaultID=@1", playerID, vaultID);
-            var vi = new VaultItems(playerID, vaultID, Plugin);
-            vi.loadSize(config.Width, config.Height);
+
+            var vaultItems = new VaultItems(playerID, vaultID, Plugin);
+            vaultItems.loadSize(config.Width, config.Height);
+
             foreach (var item in items)
             {
-                vi.loadItem(item.X, item.Y, item.Rot, item.GetItem());
+                vaultItems.loadItem(item.X, item.Y, item.Rot, item.GetItem());
             }
-            vi.EnableSync();
-            return vi;
+
+            vaultItems.EnableSync();
+
+            return vaultItems;
         }
 
         public async Task AddItem(ulong playerID, string vaultID, Item item, byte rot, byte x, byte y) =>
