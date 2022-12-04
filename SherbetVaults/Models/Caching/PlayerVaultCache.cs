@@ -9,7 +9,7 @@ namespace SherbetVaults.Models.Caching
     public class PlayerVaultCache
     {
         public ulong PlayerID { get; }
-        private readonly ConcurrentDictionary<string, VaultItems> m_Vaults = new ConcurrentDictionary<string, VaultItems>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly ConcurrentDictionary<string, VaultItems> m_Vaults = new(StringComparer.InvariantCultureIgnoreCase);
 
         public PlayerVaultCache(ulong playerID)
         {

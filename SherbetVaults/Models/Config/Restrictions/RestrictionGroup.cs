@@ -18,6 +18,6 @@ namespace SherbetVaults.Models.Config.Restrictions
         public string TranslationKey = "Restrictions_Blacklisted";
 
         [XmlArrayItem(ElementName = "ItemSelector")]
-        public List<string> Selectors = new List<string>();
+        public List<string> Selectors = new();
     }
 }

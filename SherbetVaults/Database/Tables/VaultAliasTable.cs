@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SherbetVaults.Database.Models;
 using ShimmyMySherbet.MySQL.EF.Core;
+
 namespace SherbetVaults.Database.Tables
 {
     public class VaultAliasTable : DatabaseTable<VaultAlias>
@@ -20,6 +21,5 @@ namespace SherbetVaults.Database.Tables
 
         public async Task<VaultAlias[]> GetAliasesAsync(ulong playerID) =>
             (await QueryAsync("SELECT * FROM @TABLE WHERE PlayerID=@0;", playerID)).ToArray();
-
     }
 }

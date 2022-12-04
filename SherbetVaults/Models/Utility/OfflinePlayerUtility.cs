@@ -7,13 +7,13 @@ namespace SherbetVaults.Models.Utility
     {
         public static async Task<(ulong playerID, string playerName)> GetPlayer(string handle, bool fetchName = true)
         {
-            var result = GetPlayerParallel(handle, fetchName);
+            var (playerID, playerNameTask) = GetPlayerParallel(handle, fetchName);
 
             if (fetchName)
             {
-                return (result.playerID, await result.playerNameTask);
+                return (playerID, await playerNameTask);
             }
-            return (result.playerID, "Unknown Player");
+            return (playerID, "Unknown Player");
         }
 
         public static (ulong playerID, Task<string> playerNameTask) GetPlayerParallel(string handle, bool fetchName = true)

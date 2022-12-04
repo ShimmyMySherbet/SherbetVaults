@@ -4,7 +4,7 @@ namespace SherbetVaults
 {
     public partial class SherbetVaultsPlugin
     {
-        public override TranslationList DefaultTranslations => new TranslationList()
+        public override TranslationList DefaultTranslations => new()
         {
             { "Vault_Fail_NotFound", "[color=red]Failed to find a vault by that ID[/color]" },
             { "Vault_Fail_NoPermission", "[color=red]You do not have permission to access vault {0}[/color]"},

@@ -5,7 +5,7 @@ namespace SherbetVaults.Models.Caching
 {
     public class VaultCache
     {
-        private readonly ConcurrentDictionary<ulong, PlayerVaultCache> m_Caches = new ConcurrentDictionary<ulong, PlayerVaultCache>();
+        private readonly ConcurrentDictionary<ulong, PlayerVaultCache> m_Caches = new();
 
         public VaultItems GetStorage(ulong playerID, string vaultID)
         {

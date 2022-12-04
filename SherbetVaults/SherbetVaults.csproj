@@ -409,7 +409,9 @@
     <Compile Include="Database\DatabaseQueue.cs" />
     <Compile Include="Database\Models\VaultAlias.cs" />
     <Compile Include="Database\Models\VaultItem.cs" />
+    <Compile Include="Database\Models\VaultTransaction.cs" />
     <Compile Include="Database\Tables\VaultAliasTable.cs" />
+    <Compile Include="Database\Tables\VaultTransactionsTable.cs" />
     <Compile Include="Database\Tables\VaultItemsTable.cs" />
     <Compile Include="Models\Caching\PlayerVaultCache.cs" />
     <Compile Include="Models\Caching\VaultCache.cs" />
@@ -419,6 +421,7 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\Config\SherbetVaultsConfig.cs" />
     <Compile Include="Models\Config\VaultConfig.cs" />
+    <Compile Include="Models\Enums\ETransactionType.cs" />
     <Compile Include="Models\Enums\EVaultAvailability.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\Restrictions\VaultRestrictionGroup.cs" />

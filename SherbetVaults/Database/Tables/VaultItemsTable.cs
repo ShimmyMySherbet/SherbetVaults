@@ -9,14 +9,11 @@ namespace SherbetVaults.Database.Tables
 {
     public class VaultItemsTable : DatabaseTable<VaultItem>
     {
-        public DatabaseQueue<VaultItemsTable> Queue { get; }
         public SherbetVaultsPlugin Plugin { get; }
-
 
         public VaultItemsTable(SherbetVaultsPlugin plugin, string tableName) : base(tableName)
         {
             Plugin = plugin;
-            Queue = new DatabaseQueue<VaultItemsTable>(this);
         }
 
         public async Task<VaultItems> OpenVault(ulong playerID, string vaultID, VaultConfig config)

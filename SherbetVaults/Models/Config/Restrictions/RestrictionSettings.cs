@@ -8,7 +8,7 @@ namespace SherbetVaults.Models.Config.Restrictions
         public bool ShowMessages = true;
         public bool Enabled = false;
 
-        public List<RestrictionGroup> Groups = new List<RestrictionGroup>();
+        public List<RestrictionGroup> Groups = new();
 
         public static RestrictionSettings Default
         {

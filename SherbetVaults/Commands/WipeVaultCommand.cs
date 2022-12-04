@@ -16,9 +16,9 @@ namespace SherbetVaults.Commands
         {
             var playerHandle = context.Arguments.Get<string>(0, paramName: "Target Player");
 
-            var targetPlayer = OfflinePlayerUtility.GetPlayerParallel(playerHandle);
+            var (playerID, playerNameTask) = OfflinePlayerUtility.GetPlayerParallel(playerHandle);
 
-            if (targetPlayer.playerID == 0)
+            if (playerID == 0)
             {
                 await context.ReplyAsync($"Usage: /{Name} {Syntax}", Color.cyan);
                 return;
@@ -26,9 +26,10 @@ namespace SherbetVaults.Commands
 
             var targetVault = context.Arguments.Get<string>(1, paramName: "VaultID");
 
-            var items = await Plugin.Database.VaultItems.Clear(targetPlayer.playerID, targetVault);
+            var items = await Plugin.Database.VaultItems.Clear(playerID, targetVault);
+            Plugin.Database.Queue.Enqueue(async (x) => await x.Transactions.Wipe(playerID, targetVault));
 
-            await context.ReplyKeyAsync("WipeVault_Wiped", items, await targetPlayer.playerNameTask, targetVault);
+            await context.ReplyKeyAsync("WipeVault_Wiped", items, await playerNameTask, targetVault);
         }
 
         private new SherbetVaultsPlugin Plugin =>

@@ -14,8 +14,8 @@ namespace SherbetVaults.Models
 {
     public static class Extensions
     {
-        public static readonly Regex MaxAliasMatch = new Regex(@"^SherbetVaults\.MaxAliases\.[0-9]*$");
-        public static readonly Regex MaxAliasValueMatch = new Regex(@"[0-9]*$");
+        public static readonly Regex MaxAliasMatch = new(@"^SherbetVaults\.MaxAliases\.[0-9]*$");
+        public static readonly Regex MaxAliasValueMatch = new(@"[0-9]*$");
         public static async Task OpenTrashAsync(this LDMPlayer player)
         {
             var items = new Items(7);

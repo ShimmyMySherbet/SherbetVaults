@@ -35,6 +35,25 @@ namespace SherbetVaults
         {
             var version = typeof(SherbetVaultsPlugin).Assembly.GetName().Version;
             Logger.Log($"Loading Sherbet Vaults v{version}...");
+            try
+            {
+                LoadPluginInternal();
+            }
+            catch (System.Exception ex)
+            {
+                Logger.LogError("Failed to load SherbetVaults");
+                Logger.LogError("");
+                Logger.LogError(ex.Message);
+                Logger.LogError(ex.StackTrace);
+                Logger.LogError("");
+                Logger.LogError("Support: https://discord.shimmymysherbet.com/");
+
+            }
+        }
+
+        private void LoadPluginInternal()
+        {
+            var version = typeof(SherbetVaultsPlugin).Assembly.GetName().Version;
             VaultManager = new VaultManager(this);
             RestrictionBuilder = new RestrictionBuilder(this);
             RestrictionTool = new RestrictionTool(this);

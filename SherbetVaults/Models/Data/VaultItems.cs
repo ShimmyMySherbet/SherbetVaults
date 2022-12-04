@@ -5,7 +5,6 @@ using RocketExtensions.Utilities;
 using RocketExtensions.Utilities.ShimmyMySherbet.Extensions;
 using SDG.Unturned;
 using SherbetVaults.Database;
-using SherbetVaults.Database.Tables;
 
 namespace SherbetVaults.Models.Data
 {
@@ -16,7 +15,7 @@ namespace SherbetVaults.Models.Data
 
         public new byte page => 7;
 
-        public DatabaseQueue<VaultItemsTable> Database { get; }
+        public DatabaseQueue<DatabaseManager> Database { get; }
         public SherbetVaultsPlugin Plugin { get; }
 
         public bool SyncToDatabase { get; private set; } = false;
@@ -28,7 +27,7 @@ namespace SherbetVaults.Models.Data
             PlayerID = playerID;
             VaultID = vaultID;
             Plugin = plugin;
-            Database = plugin.Database.VaultItems.Queue;
+            Database = plugin.Database.Queue;
             onItemUpdated += ItemUpdated;
             onItemAdded += ItemAdded;
             onItemRemoved += ItemRemoved;
@@ -52,7 +51,8 @@ namespace SherbetVaults.Models.Data
 
             Database.Enqueue(async (table) =>
             {
-                await table.UpdateItemState(PlayerID, VaultID, jar);
+                await table.VaultItems.UpdateItemState(PlayerID, VaultID, jar);
+                await table.Transactions.Update(PlayerID, VaultID, jar);
             });
         }
 
@@ -73,7 +73,8 @@ namespace SherbetVaults.Models.Data
 
             Database.Enqueue(async (table) =>
             {
-                await table.AddItem(PlayerID, VaultID, jar);
+                await table.VaultItems.AddItem(PlayerID, VaultID, jar);
+                await table.Transactions.Add(PlayerID, VaultID, jar.item, jar.rot, jar.x, jar.y);
             });
         }
 
@@ -84,7 +85,8 @@ namespace SherbetVaults.Models.Data
 
             Database.Enqueue(async (table) =>
             {
-                await table.RemoveItem(PlayerID, VaultID, jar.x, jar.y);
+                await table.VaultItems.RemoveItem(PlayerID, VaultID, jar.x, jar.y);
+                await table.Transactions.Remove(PlayerID, VaultID, jar.x, jar.y);
             });
         }
 
@@ -102,7 +104,7 @@ namespace SherbetVaults.Models.Data
 
             Database.Enqueue(async (table) =>
             {
-                await table.Clear(PlayerID, VaultID);
+                await table.VaultItems.Clear(PlayerID, VaultID);
             });
         }
 

@@ -5,7 +5,7 @@ namespace SherbetVaults.Models.Restrictions
 {
     public class VaultRestrictionGroup : RestrictionGroup
     {
-        public List<IItemRestrictor> Restrictors = new List<IItemRestrictor>();
+        public List<IItemRestrictor> Restrictors = new();
 
         public VaultRestrictionGroup(RestrictionGroup group, List<IItemRestrictor> restrictors)
         {
