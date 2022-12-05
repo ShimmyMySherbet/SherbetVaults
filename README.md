@@ -48,11 +48,6 @@ Allows the name of the plugin's database tables to be renamed. This allows for m
 
 So you can change this value if you have 2 or more servers using the same database, and you don't want vaults to be synced across them.
 
-### Item Restrictions
-This plugin comes with a powerful form of item restrictions. This system provides many different item selectors, weights, whitelisting, blacklisting, custom messages, ect.
-
-See <a href="https://github.com/ShimmyMySherbet/SherbetVaults/blob/master/ItemRestrictions.md">Item Restrictions</a> for more info and documentation.
-
 ### Default Config
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -92,6 +87,12 @@ See <a href="https://github.com/ShimmyMySherbet/SherbetVaults/blob/master/ItemRe
   </Restrictions>
 </SherbetVaultsConfig>
 ```
+
+## Item Restrictions
+This plugin comes with a powerful form of item restrictions. This system provides many different item selectors, weights, whitelisting, blacklisting, custom messages, ect.
+
+See <a href="https://github.com/ShimmyMySherbet/SherbetVaults/blob/master/ItemRestrictions.md">Item Restrictions</a> for more info and documentation.
+
 
 ## Download
 Downloads can be found in the <a href="https://github.com/ShimmyMySherbet/SherbetVaults/releases/">Releases</a> page.
