@@ -135,11 +135,11 @@
     </Reference>
     <Reference Include="UniTask, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UniTask.2019.2.2.5\lib\net461\UniTask.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UniTask.Linq, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UniTask.2019.2.2.5\lib\net461\UniTask.Linq.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMod.UnityEngine.Redist.2019.4.10\lib\net461\UnityEngine.dll</HintPath>
