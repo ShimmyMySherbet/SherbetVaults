@@ -12,7 +12,7 @@ namespace SherbetVaults.Models.Config
         public bool LargestVaultIsDefault = false;
         public string DefaultVault = "default";
         public bool VaultAliasesEnabled = false;
-
+        public bool CacheVaults = false;
         public string DatabaseTablePrefix = "SherbetVaults";
 
         [XmlArrayItem(ElementName = "Vault")]
