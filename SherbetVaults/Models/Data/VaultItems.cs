@@ -122,10 +122,11 @@ namespace SherbetVaults.Models.Data
         {
             Player = ldm;
             var player = ldm.Player;
+            player.inventory.isStoring = true;
+            player.inventory.storage = null;
             player.inventory.updateItems(7, this);
             player.inventory.sendStorage();
         }
-
         public async Task OpenForPlayerAsync(LDMPlayer player) =>
             await ThreadTool.RunOnGameThreadAsync(OpenForPlayer, player);
     }
