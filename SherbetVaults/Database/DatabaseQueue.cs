@@ -50,43 +50,24 @@ namespace SherbetVaults.Database
 
         private async Task RunDatabaseQueue()
         {
-            const int maxRetries = 3;
-            const int retryDelay = 1000; // You can adjust the delay time
-
             while (!Token.IsCancellationRequested)
             {
                 await m_QueueSemaphore.WaitAsync(Token);
                 if (m_DatabaseQueue.TryDequeue(out var action))
                 {
-                    int remainingRetries = maxRetries;
-
-                RetryLabel:
-
                     try
                     {
                         await action(Table);
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogWarning($"Failed to write database action: {ex.Message}");
-                        Logger.LogWarning($"Table Type: {typeof(T).FullName}");
-                        Logger.LogWarning(ex.StackTrace);
-
-                        if (remainingRetries > 0)
-                        {
-                            remainingRetries--;
-                            await Task.Delay(retryDelay);
-                            goto RetryLabel;
-                        }
-                        else
-                        {
-                            Logger.LogError($"Failed after all attempts. Skipping action.");
-                        }
+                        Logger.LogError($"Failed to write database action: {ex.Message}");
+                        Logger.LogError($"Table Type: {typeof(T).FullName}");
+                        Logger.LogError(ex.StackTrace);
                     }
                 }
             }
         }
-
 
         public void Dispose()
         {
