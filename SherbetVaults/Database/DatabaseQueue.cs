@@ -50,24 +50,43 @@ namespace SherbetVaults.Database
 
         private async Task RunDatabaseQueue()
         {
+            const int maxRetries = 3;
+            const int retryDelay = 1000;
+
             while (!Token.IsCancellationRequested)
             {
                 await m_QueueSemaphore.WaitAsync(Token);
                 if (m_DatabaseQueue.TryDequeue(out var action))
                 {
+                    int remainingRetries = maxRetries;
+
+                RetryLabel:
+
                     try
                     {
                         await action(Table);
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogError($"Failed to write database action: {ex.Message}");
-                        Logger.LogError($"Table Type: {typeof(T).FullName}");
-                        Logger.LogError(ex.StackTrace);
+                        Logger.LogWarning($"Failed to write database action: {ex.Message}");
+                        Logger.LogWarning($"Table Type: {typeof(T).FullName}");
+                        Logger.LogWarning(ex.StackTrace);
+
+                        if (remainingRetries > 0)
+                        {
+                            remainingRetries--;
+                            await Task.Delay(retryDelay);
+                            goto RetryLabel;
+                        }
+                        else
+                        {
+                            Logger.LogError($"Failed after all attempts. Skipping action.");
+                        }
                     }
                 }
             }
         }
+
 
         public void Dispose()
         {
