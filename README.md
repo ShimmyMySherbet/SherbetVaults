@@ -34,9 +34,9 @@ For more info on vault aliases, see <a href="https://github.com/ShimmyMySherbet/
 The MySQL settings for the plugin to use.
 
 ### Vaults
-Sets the vault types, their permissions, and size.
+Defines vaults, with their ID, and size.
 
-`$VaultID` acts as a short-cut to the vault's ID.
+Specific vaults are granted with the permission format `Vaults.{VaultID}`. Players also need the `Vault` and `Vaults` permissions to access any vaults.
 
 ### Largest Vault Is Default
 When enabled, sets the default vault for a player to the largest one they have access to.
@@ -64,8 +64,8 @@ So you can change this value if you have 2 or more servers using the same databa
   <VaultAliasesEnabled>false</VaultAliasesEnabled>
   <DatabaseTablePrefix>SherbetVaults</DatabaseTablePrefix>
   <Vaults>
-    <Vault VaultID="default" Permission="Vaults.$VaultID" Width="8" Height="8" />
-    <Vault VaultID="vip" Permission="Vaults.$VaultID" Width="12" Height="12" />
+    <Vault VaultID="default" Width="8" Height="8" />
+    <Vault VaultID="vip" Width="12" Height="12" />
   </Vaults>
   <Restrictions>
     <AdminsBypassRestrictions>false</AdminsBypassRestrictions>
@@ -92,6 +92,8 @@ So you can change this value if you have 2 or more servers using the same databa
 This plugin comes with a powerful form of item restrictions. This system provides many different item selectors, weights, whitelisting, blacklisting, custom messages, ect.
 
 See <a href="https://github.com/ShimmyMySherbet/SherbetVaults/blob/master/ItemRestrictions.md">Item Restrictions</a> for more info and documentation.
+
+Note, workshop selectors/restrictors are currently broken. A work around is to manually restrict the item ID ranges for the workshop mod (e.g., 15100-15200).
 
 
 ## Download
