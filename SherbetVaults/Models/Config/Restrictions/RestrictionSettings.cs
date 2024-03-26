@@ -18,7 +18,7 @@ namespace SherbetVaults.Models.Config.Restrictions
                 {
                     Groups = new List<RestrictionGroup>()
                     {
-                        new RestrictionGroup()
+                        new()
                         {
                             GroupID = "Group1",
                             Selectors = new List<string>()

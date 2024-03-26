@@ -2,7 +2,7 @@
 
 namespace SherbetVaults.Models.Data
 {
-    public struct ItemSpawnTable
+    public readonly struct ItemSpawnTable
     {
         public ushort TableID { get; }
         public HashSet<ushort> Items { get; }

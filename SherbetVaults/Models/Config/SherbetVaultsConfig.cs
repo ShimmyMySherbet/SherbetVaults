@@ -24,8 +24,8 @@ namespace SherbetVaults.Models.Config
         {
             DatabaseSettings = DatabaseSettings.Default;
             Vaults = new List<VaultConfig>() {
-                new VaultConfig() { VaultID = "default", Height = 8, Width = 8 },
-                new VaultConfig() { VaultID = "vip", Height = 12, Width = 12 }
+                new() { VaultID = "default", Height = 8, Width = 8 },
+                new() { VaultID = "vip", Height = 12, Width = 12 }
             };
         }
     }

@@ -14,7 +14,12 @@ namespace SherbetVaults.Models.Data
         public ulong PlayerID { get; }
         public string VaultID { get; }
 
+#pragma warning disable IDE1006
+        /// <summary>
+        /// Overrides <seealso cref="Items.page"/> to always be the external storage page.
+        /// </summary>
         public new byte page => 7;
+#pragma warning restore IDE1006
 
         public DatabaseQueue<DatabaseManager> Database { get; }
         public SherbetVaultsPlugin Plugin { get; }

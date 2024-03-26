@@ -25,9 +25,9 @@ namespace SherbetVaults.Models.Utility
                 return null;
             }
 
-            var permissedVaults = GetPlayerVaults(player);
+            var allowedVaults = GetPlayerVaults(player);
 
-            if (permissedVaults.Length == 0)
+            if (allowedVaults.Length == 0)
             {
                 availability = EVaultAvailability.NoAllowedVaults;
                 return null;
@@ -40,7 +40,7 @@ namespace SherbetVaults.Models.Utility
                 if (Plugin.Config.LargestVaultIsDefault)
                 {
                     availability = EVaultAvailability.VaultAvailable;
-                    return GetLargetVault(player);
+                    return GetLargestVault(player);
                 }
 
                 vaultDefaulted = true;
@@ -54,7 +54,7 @@ namespace SherbetVaults.Models.Utility
                 if (vaultDefaulted)
                 {
                     availability = EVaultAvailability.VaultAvailable;
-                    return permissedVaults.FirstOrDefault();
+                    return allowedVaults.FirstOrDefault();
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace SherbetVaults.Models.Utility
         public VaultConfig GetVaultConfig(string vaultID) =>
             Plugin.VaultConfigs.FirstOrDefault(x => x.VaultID.Equals(vaultID, StringComparison.InvariantCultureIgnoreCase));
 
-        private VaultConfig GetLargetVault(LDMPlayer player) =>
+        private VaultConfig GetLargestVault(LDMPlayer player) =>
             GetPlayerVaults(player)
             .OrderByDescending(x => x.Width * x.Height)
             .FirstOrDefault();

@@ -8,7 +8,7 @@ namespace SherbetVaults.Models
     /// </summary>
     public class VaultPlayerLock
     {
-        public ConcurrentDictionary<ulong, bool> m_PlayerBlocks = new ConcurrentDictionary<ulong, bool>();
+        public ConcurrentDictionary<ulong, bool> m_PlayerBlocks = new();
 
         public OpenBlockToken TryObtainLock(ulong player, out bool valid)
         {
@@ -35,20 +35,20 @@ namespace SherbetVaults.Models
             public ulong PlayerID { get; }
             private VaultPlayerLock Parent { get; }
 
-            private bool Disposed;
+            private bool m_Disposed;
 
             public OpenBlockToken(ulong playerID, VaultPlayerLock parent)
             {
-                Disposed = false;
+                m_Disposed = false;
                 PlayerID = playerID;
                 Parent = parent;
             }
 
             public void Dispose()
             {
-                if (!Disposed)
+                if (!m_Disposed)
                 {
-                    Disposed = true;
+                    m_Disposed = true;
                     Parent?.Release(PlayerID);
                 }
             }

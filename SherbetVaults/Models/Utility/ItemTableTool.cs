@@ -13,7 +13,7 @@ namespace SherbetVaults.Models.Utility
 
         public void ReInit()
         {
-            Tables = GetSpawntables();
+            Tables = GetSpawnTables();
         }
 
         public ushort[] GetTableIDs(ushort itemID) =>
@@ -22,7 +22,7 @@ namespace SherbetVaults.Models.Utility
         public ushort[] GetTableIDs(Regex selector) =>
             Tables.Where(x => selector.IsMatch(x.Name)).Select(x => x.TableID).ToArray();
 
-        private List<ItemSpawnTable> GetSpawntables()
+        private List<ItemSpawnTable> GetSpawnTables()
         {
             var tables = new List<ItemSpawnTable>();
 
